@@ -9,9 +9,12 @@ export const store = new Vuex.Store({
       {
         id: 'logo',
         image: require('../assets/DEMOSITE.svg')
+      },
+      {
+        id: 'UI/UX Design',
+        image: require('../assets/alexandra-gorn-VBo24-Ys6gQ-unsplash 1 1.jpg')
       }
-    ],
-    counter: 1
+    ]
   },
   getters: {
     getAsset: state => id => {
