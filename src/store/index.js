@@ -13,6 +13,18 @@ export const store = new Vuex.Store({
       {
         id: 'UI/UX Design',
         image: require('../assets/alexandra-gorn-VBo24-Ys6gQ-unsplash 1 1.jpg')
+      },
+      {
+        id: 'offer1L',
+        image: require('../assets/umbrella.svg')
+      },
+      {
+        id: 'offer1R',
+        image: require('../assets/bruno-cervera-YH7mGnigHRs-unsplash_1_1.jpg')
+      },
+      {
+        id: 'offer2R',
+        image: require('../assets/vandan-patel-vfiuGpL9fiU-unsplash_1_1.jpg')
       }
     ]
   },

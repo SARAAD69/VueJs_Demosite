@@ -1,7 +1,8 @@
 <template>
-    <div class="pt-3 pb-5 col-12">
-            <b-col class="d-none d-sm-block col-lg-8 col-md-10 col-sm-10 col-12 offset-lg-2 offset-md-1 offset-sm-1 pt-3 pl-0 pr-0">
-                    <b-nav id="upperNav">
+<div>
+    <b-container class="pt-3 pb-5 pl-0 pr-0">
+            <b-col class="d-none d-sm-block col-12 pt-3 pl-0 pr-0">
+                    <b-nav class="pl-4" id="upperNav">
                         <b-nav-item class="border-right border-white">Menu</b-nav-item>
                         <b-nav-item class="border-right border-white">Some text</b-nav-item>
                         <b-nav-item class="border-right border-white">Another Item</b-nav-item>
@@ -9,8 +10,8 @@
                         <b-nav-item>And last one</b-nav-item>
                     </b-nav>
             </b-col>
-            <b-col class="col-lg-8 col-md-10 col-sm-10 col-10 offset-1 offset-lg-2 offset-md-1 offset-sm-1 pt-3 pl-0 pr-0 mr-0">
-                <b-navbar class="pl-0 pr-0" toggleable="md" type="dark">
+            <b-col class="col-12 pt-3 pl-0 pr-0 mr-0">
+                <b-navbar class="pl-4 pr-0" toggleable="md" type="dark">
                     <b-navbar-brand>
                         <img :src="getAsset('logo')" alt="DEMOSITE">
                     </b-navbar-brand>
@@ -19,7 +20,7 @@
 
                     <b-collapse id="nav-collapse" is-nav>
 
-                    <b-navbar-nav class="ml-auto">
+                    <b-navbar-nav class="ml-auto pr-3">
                         <b-nav-item>Home</b-nav-item>
                         <b-nav-item>Services</b-nav-item>
                         <b-nav-item id="popover-target" disabled>Works</b-nav-item>
@@ -38,7 +39,8 @@
                     </b-collapse>
                 </b-navbar>
             </b-col>
-    </div>
+    </b-container>
+</div>
 </template>
 
 <script>
@@ -69,5 +71,9 @@ export default {
         font-weight: bold
         &:hover
             text-decoration: underline
-
+    .navbar-toggler
+        margin-right: 3rem!important
+    @media screen and (max-width: 576px)
+        .navbar-brand
+            margin-left: 1.5rem!important
 </style>
