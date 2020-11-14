@@ -34,4 +34,7 @@ export default {
           color: black!important
     .arrow:after
         border-bottom-color: black!important
+    label
+      font-weight: bold
+      text-transform: uppercase
 </style>

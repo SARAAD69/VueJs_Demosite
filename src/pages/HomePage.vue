@@ -53,6 +53,59 @@
                 </div>
             </b-col>
           </b-row>
+           <b-row class="ml-sm">
+            <h2 class="text-uppercase font-weight-bold pl-5 pt-5 pb-5 pl-sm"><span>Co</span>ntact</h2>
+          </b-row>
+          <b-row id="row-content3">
+            <b-col class="col-lg-7 col-md-7 col-sm-12 col-10 offset-sm-0 offset-1 pr-0 pl-0">
+                <p class="pl-5 pt-3 pl-sm">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                  ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                  ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+                <p class="pl-5 pl-sm">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                  ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                  ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+                <p class="pl-5 pl-sm">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                  ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                  ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+            </b-col>
+            <b-col class="col-lg-3 offset-lg-1 col-md-3 offset-md-1 col-sm-12 col-10 offset-sm-0 offset-1 pr-0 pl-0">
+              <b-form class="ml-n5 ml" @submit="onSubmit" v-if="show">
+                <b-form-group id="input-group-1" label="Name" label-for="input-1">
+                  <b-form-input
+                    id="input-1"
+                    v-model="form.name"
+                    required
+                  ></b-form-input>
+                </b-form-group>
+
+                <b-form-group id="input-group-2" label="Email" label-for="input-2">
+                  <b-form-input
+                    id="input-2"
+                    v-model="form.email"
+                    type="email"
+                    required
+                    placeholder="test@test.com"
+                  ></b-form-input>
+                </b-form-group>
+
+                <b-form-group id="input-group-3" label="Message" label-for="input-3">
+                  <b-form-textarea
+                    id="input-3"
+                    v-model="form.text"
+                    rows="10"
+                  ></b-form-textarea>
+                </b-form-group>
+
+                <b-button squared class="pl-4 pr-4 text-uppercase font-weight-bold" type="submit" variant="outline-primary">Learn more</b-button>
+              </b-form>
+            </b-col>
+          </b-row>
       </b-container>
   </div>
 </template>
@@ -61,6 +114,16 @@
 import Header from '../components/Header'
 import { mapGetters } from 'vuex'
 export default {
+  data () {
+    return {
+      form: {
+        email: '',
+        name: '',
+        text: ''
+      },
+      show: true
+    }
+  },
   components: {
     appHeader: Header
   },
@@ -68,6 +131,19 @@ export default {
     ...mapGetters([
       'getAsset'
     ])
+  },
+  methods: {
+    onSubmit (evt) {
+      evt.preventDefault()
+      alert(JSON.stringify(this.form))
+      this.form.email = ''
+      this.form.name = ''
+      this.form.text = ''
+      this.show = false
+      this.$nextTick(() => {
+        this.show = true
+      })
+    }
   }
 }
 </script>
@@ -86,7 +162,7 @@ export default {
   #UI_UX
     background-color: $grey_color
   p
-      font-size: 0.9rem
+    font-size: 0.9rem
   .mt-n6
     margin-top: -4rem!important
   .mt-4-5
@@ -99,6 +175,22 @@ export default {
       z-index: 2
     img
       z-index: 1
+  .form-control
+    border-radius: 0
+    border-width: 3px
+  input, textarea
+    &:focus
+      border-color: black
+      box-shadow: none
+      outline: 0 none
+  form
+    button
+      color: $head_color
+      border: 3px solid $head_color
+      &:hover, &:focus, &:active
+        color: white
+        background-color: $head_color
+        border-color: $head_color
 
 @media screen and (max-width: 992px) and (min-width: 768px)
   .offers
@@ -118,6 +210,8 @@ export default {
     width: 100%
   .half-transparent
     width: 97.3%!important
+  .ml-n5
+    margin-left: 0.75rem!important
 
 @media screen and (max-width: 576px)
     .ml-sm
