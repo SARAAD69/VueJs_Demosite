@@ -56,7 +56,7 @@
            <b-row class="ml-sm">
             <h2 class="text-uppercase font-weight-bold pl-5 pt-5 pb-5 pl-sm"><span>Co</span>ntact</h2>
           </b-row>
-          <b-row id="row-content3">
+          <b-row id="row-content3"  class="pb-5">
             <b-col class="col-lg-7 col-md-7 col-sm-12 col-10 offset-sm-0 offset-1 pr-0 pl-0">
                 <p class="pl-5 pt-3 pl-sm">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
@@ -102,16 +102,18 @@
                   ></b-form-textarea>
                 </b-form-group>
 
-                <b-button squared class="pl-4 pr-4 text-uppercase font-weight-bold" type="submit" variant="outline-primary">Learn more</b-button>
+                <b-button squared class="block pl-4 pr-4 text-uppercase font-weight-bold" type="submit" variant="outline-primary">Learn more</b-button>
               </b-form>
             </b-col>
           </b-row>
       </b-container>
+      <app-footer></app-footer>
   </div>
 </template>
 
 <script>
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import { mapGetters } from 'vuex'
 export default {
   data () {
@@ -125,7 +127,8 @@ export default {
     }
   },
   components: {
-    appHeader: Header
+    appHeader: Header,
+    appFooter: Footer
   },
   computed: {
     ...mapGetters([
@@ -233,4 +236,7 @@ export default {
       margin-top: 0!important
     .half-transparent
       width: 100%!important
+    .block
+        display: block!important
+        width: 100%!important
 </style>
