@@ -114,7 +114,7 @@
 <script>
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -133,6 +133,9 @@ export default {
   computed: {
     ...mapGetters([
       'getAsset'
+    ]),
+    ...mapActions([
+      'getRoute'
     ])
   },
   methods: {
@@ -147,6 +150,10 @@ export default {
         this.show = true
       })
     }
+  },
+  beforeMount () {
+    const path = this.$route.fullPath
+    this.$store.dispatch('getRoute', path)
   }
 }
 </script>

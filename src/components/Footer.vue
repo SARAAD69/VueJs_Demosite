@@ -13,11 +13,11 @@
             <b-col class="col-lg-7 col-md-8 col-12 pl-0 pr-0 mr-0">
                 <b-navbar class="pt-0" type="dark">
                     <b-navbar-nav class="mxAuto ml-auto pr-3">
-                        <b-nav-item>Home</b-nav-item>
-                        <b-nav-item>Services</b-nav-item>
-                        <b-nav-item>Works</b-nav-item>
-                        <b-nav-item>About Me</b-nav-item>
-                        <b-nav-item>Contact</b-nav-item>
+                        <b-nav-item to="/">Home</b-nav-item>
+                        <b-nav-item to="/services">Services</b-nav-item>
+                        <b-nav-item to="/works">Works</b-nav-item>
+                        <b-nav-item to="aboutme">About Me</b-nav-item>
+                        <b-nav-item to="/contact">Contact</b-nav-item>
                     </b-navbar-nav>
                 </b-navbar>
                 <div class="footer_logo d-md-block d-none float-right pt-3 pt5">

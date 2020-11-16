@@ -3,11 +3,11 @@
     <b-container class="pt-3 pb-5 pl-0 pr-0">
             <b-col class="d-none d-sm-block col-12 pt-3 pl-0 pr-0">
                     <b-nav class="pl-4" id="upperNav">
-                        <b-nav-item class="border-right border-white">Menu</b-nav-item>
-                        <b-nav-item class="border-right border-white">Some text</b-nav-item>
-                        <b-nav-item class="border-right border-white">Another Item</b-nav-item>
-                        <b-nav-item class="border-right border-white">One More</b-nav-item>
-                        <b-nav-item>And last one</b-nav-item>
+                        <b-nav-item to="/menu" class="border-right border-white">Menu</b-nav-item>
+                        <b-nav-item to="/sometext" class="border-right border-white">Some text</b-nav-item>
+                        <b-nav-item to="/anotheritem" class="border-right border-white">Another Item</b-nav-item>
+                        <b-nav-item to="/onemore" class="border-right border-white">One More</b-nav-item>
+                        <b-nav-item to="/andlastone">And last one</b-nav-item>
                     </b-nav>
             </b-col>
             <b-col class="col-12 pt-3 pl-0 pr-0 mr-0">
@@ -21,20 +21,20 @@
                     <b-collapse id="nav-collapse" is-nav>
 
                     <b-navbar-nav class="ml-auto pr-3">
-                        <b-nav-item>Home</b-nav-item>
-                        <b-nav-item>Services</b-nav-item>
+                        <b-nav-item to="/">Home</b-nav-item>
+                        <b-nav-item to="/services">Services</b-nav-item>
                         <b-nav-item id="popover-target" disabled>Works</b-nav-item>
                             <b-popover target="popover-target" triggers="hover" placement="bottom" boundary-padding="1">
                                 <b-list-group>
-                                    <b-list-group-item to="#">All</b-list-group-item>
-                                    <b-list-group-item to="#">Graphic</b-list-group-item>
-                                    <b-list-group-item to="#">Design</b-list-group-item>
-                                    <b-list-group-item to="#">Logo</b-list-group-item>
-                                    <b-list-group-item to="#">Website</b-list-group-item>
+                                    <b-list-group-item to="/all">All</b-list-group-item>
+                                    <b-list-group-item to="/graphic">Graphic</b-list-group-item>
+                                    <b-list-group-item to="/design">Design</b-list-group-item>
+                                    <b-list-group-item to="/logo">Logo</b-list-group-item>
+                                    <b-list-group-item to="/website">Website</b-list-group-item>
                                 </b-list-group>
                             </b-popover>
-                        <b-nav-item>About Me</b-nav-item>
-                        <b-nav-item>Contact</b-nav-item>
+                        <b-nav-item to="/aboutme">About Me</b-nav-item>
+                        <b-nav-item to="/contact">Contact</b-nav-item>
                     </b-navbar-nav>
                     </b-collapse>
                 </b-navbar>

@@ -48,7 +48,20 @@ export const store = new Vuex.Store({
         id: 5,
         text: 'Sodales ut etiam sit amet. Sagittis id consectetur purus ut. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. Sodales ut etiamsit amet nisl purus in mollis. Diam maecenas ultricies mi eget mauris. Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Nibh cras pulvinar mattis nunc sed blandit libero volutpat sed. Ipsum dolor sit amet consectetur. Adipiscing diam donec adipiscing tristique risus nec feugiat in. Tellus in metus vulputate eu scelerisque felis imperdiet proin. Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Mauris cursus mattis molestie a iaculis at.'
       }
-    ]
+    ],
+    routeHistory: []
+  },
+  mutations: {
+    addRoute: (state, payload) => {
+      if (state.routeHistory[state.routeHistory.length - 1] !== payload) {
+        state.routeHistory.push(payload)
+      }
+      console.log('from mutation ' + state.routeHistory)
+    },
+    removeRoute: state => {
+      state.routeHistory.pop()
+      console.log('from mutation delete ' + state.routeHistory)
+    }
   },
   getters: {
     getAsset: state => id => {
@@ -58,10 +71,17 @@ export const store = new Vuex.Store({
     getParagraph: state => id => {
       const p = state.generatedText.find(generatedText => generatedText.id === id)
       return p.text
+    },
+    getRouteHistory: state => {
+      return state.routeHistory
     }
   },
-  mutations: {
-  },
   actions: {
+    getRoute: (context, path) => {
+      context.commit('addRoute', path)
+    },
+    deleteRoute: context => {
+      context.commit('removeRoute')
+    }
   }
 })

@@ -3,7 +3,7 @@
         <app-header></app-header>
         <b-container>
             <b-row>
-                <h2 class="text-uppercase font-weight-bold p-3 pt-4"><span>Gr</span>aphic</h2>
+                <h2 class="text-uppercase font-weight-bold p-3 pt-4"><span>Wo</span>rks</h2>
                 <button-back class="ml-auto h-50 my-auto mr-4"></button-back>
             </b-row>
             <b-row v-for="i in 5" :key="i">
