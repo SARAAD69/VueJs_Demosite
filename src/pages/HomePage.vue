@@ -40,7 +40,7 @@
           </b-row>
           <b-row id="row-content2">
             <b-col class="col-lg-6 col-md-6 col-sm-12 col-10 mx-auto pr-0 pl-0">
-              <img class="pl-5 pl-sm" :src="getAsset('offer1L')" width="95%" alt="Umbrella">
+              <img class="pl-5 pl-sm" :src="getAsset('offer1L')" width="95%" alt="Please wait...">
             </b-col>
             <b-col class="col-lg-6 col-md-5 col-sm-12 col-10 mx-auto mt pr-0 pl-0 pl-sm">
                 <img class="offers" :src="getAsset('offer1R')" width="85%" alt="offer1">
@@ -123,7 +123,9 @@ export default {
         name: '',
         text: ''
       },
-      show: true
+      show: true,
+
+      info: null
     }
   },
   components: {
@@ -135,7 +137,8 @@ export default {
       'getAsset'
     ]),
     ...mapActions([
-      'getRoute'
+      'getRoute',
+      'getMeteoData'
     ])
   },
   methods: {
@@ -154,6 +157,7 @@ export default {
   beforeMount () {
     const path = this.$route.fullPath
     this.$store.dispatch('getRoute', path)
+    this.$store.dispatch('getMeteoData')
   }
 }
 </script>

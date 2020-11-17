@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
@@ -16,7 +17,7 @@ export const store = new Vuex.Store({
       },
       {
         id: 'offer1L',
-        image: require('../assets/umbrella.svg')
+        image: null
       },
       {
         id: 'offer1R',
@@ -49,7 +50,11 @@ export const store = new Vuex.Store({
         text: 'Sodales ut etiam sit amet. Sagittis id consectetur purus ut. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. Sodales ut etiamsit amet nisl purus in mollis. Diam maecenas ultricies mi eget mauris. Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Nibh cras pulvinar mattis nunc sed blandit libero volutpat sed. Ipsum dolor sit amet consectetur. Adipiscing diam donec adipiscing tristique risus nec feugiat in. Tellus in metus vulputate eu scelerisque felis imperdiet proin. Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras. Mauris cursus mattis molestie a iaculis at.'
       }
     ],
-    routeHistory: []
+    routeHistory: [],
+    meteoAPIData: {
+      forecastTimeUtc: [],
+      conditionCode: []
+    }
   },
   mutations: {
     addRoute: (state, payload) => {
@@ -61,6 +66,28 @@ export const store = new Vuex.Store({
     removeRoute: state => {
       state.routeHistory.pop()
       console.log('from mutation delete ' + state.routeHistory)
+    },
+    receiveMeteoData: state => {
+      axios
+        .get('https://cors-anywhere.herokuapp.com/https://api.meteo.lt/v1/places/kaunas/forecasts/long-term')
+        .then(response => {
+          const currentDateWithFormat = new Date().toJSON().replace(/-/g, '-').replace('T', ' ').slice(0, 13)
+          const apiDate = response.data.forecastTimestamps.map(data => data.forecastTimeUtc.slice(0, 13))
+          const apiCondition = response.data.forecastTimestamps.map(data => data.conditionCode)
+          const assetToChange = state.assets.find(assets => assets.id === 'offer1L')
+          for (const key in apiDate) {
+            if (apiDate[key] === currentDateWithFormat) {
+              state.meteoAPIData.forecastTimeUtc.push(apiDate[key])
+              state.meteoAPIData.conditionCode.push(apiCondition[key])
+            }
+          }
+          if (['overcast', 'light-rain', 'moderate-rain', 'heavy-rain', 'fog'].indexOf(state.meteoAPIData.conditionCode[0]) > -1) {
+            assetToChange.image = require('../assets/umbrella.svg')
+          } else if (['clear', 'isolated-clouds', 'scattered-clouds', 'na'].indexOf(state.meteoAPIData.conditionCode[0]) > -1) {
+            assetToChange.image = require('../assets/sunglasses.svg')
+          } else assetToChange.image = require('../assets/snowflake.svg')
+        })
+        .catch(error => console.log(error))
     }
   },
   getters: {
@@ -82,6 +109,9 @@ export const store = new Vuex.Store({
     },
     deleteRoute: context => {
       context.commit('removeRoute')
+    },
+    getMeteoData: context => {
+      context.commit('receiveMeteoData')
     }
   }
 })
