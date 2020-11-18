@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import BackButton from '../components/BackButton'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+import BackButton from '../../components/BackButton'
 import { mapGetters } from 'vuex'
 export default {
   components: {

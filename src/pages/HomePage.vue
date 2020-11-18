@@ -38,16 +38,26 @@
           <b-row class="ml-sm">
             <h6 class="text-uppercase font-weight-bold pl-5 pl-sm">Offers today</h6>
           </b-row>
-          <b-row id="row-content2">
-            <b-col class="col-lg-6 col-md-6 col-sm-12 col-10 mx-auto pr-0 pl-0">
-              <img class="pl-5 pl-sm" :src="getAsset('offer1L')" width="95%" alt="Please wait...">
+          <b-row id="row-content2" class="h-100">
+            <b-col class="col-lg-6 col-md-6 col-sm-12 col-10 mx-auto my-auto pr-0 pl-0">
+              <div class="text-center">
+                <div v-if="!sendMeteoData.isProcessedLoading" class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+              <img v-if="!sendMeteoData.isError && sendMeteoData.isProcessedLoading" class="pl-5 pl-sm" :src="getAsset('offer1L')" width="95%" alt="Please wait...">
+              <h5 v-if="sendMeteoData.isError && sendMeteoData.isProcessedLoading" class="text-center">
+                Unfortunately, resource could not be loaded. <br>
+                <i class="text-danger">{{sendMeteoData.errorMessage}}.</i> <br>
+                Please, try again later.
+              </h5>
             </b-col>
-            <b-col class="col-lg-6 col-md-5 col-sm-12 col-10 mx-auto mt pr-0 pl-0 pl-sm">
-                <img class="offers" :src="getAsset('offer1R')" width="85%" alt="offer1">
+            <b-col class="col-lg-6 col-md-5 col-sm-12 col-10 mx-auto my-auto mt pr-0 pl-0 pl-sm">
+                <img class="offers" :src="getAsset('offer1R')" width="84%" alt="offer1">
                 <div class="half-transparent mt-n6 pl-4 pb-2 pt-3">
                   <h3 class="text-uppercase align-middle font-weight-bold">The best coffee</h3>
                 </div>
-                <img class="mt-4-5 offers" :src="getAsset('offer2R')" width="85%" alt="offer2">
+                <img class="mt-4-5 offers" :src="getAsset('offer2R')" width="84%" alt="offer2">
                 <div class="half-transparent mt-n6 pl-4 pb-2 pt-3">
                   <h3 class="text-uppercase align-middle font-weight-bold">Top 100 books</h3>
                 </div>
@@ -134,7 +144,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getAsset'
+      'getAsset',
+      'sendMeteoData'
     ]),
     ...mapActions([
       'getRoute',
@@ -185,7 +196,7 @@ export default {
     .half-transparent
       background: rgba(215, 215, 215, 0.5)
       position: absolute
-      width: 85%
+      width: 84%
       z-index: 2
     img
       z-index: 1
@@ -205,12 +216,15 @@ export default {
         color: white
         background-color: $head_color
         border-color: $head_color
+  .spinner-border
+    width: 3rem
+    height: 3rem
 
 @media screen and (max-width: 992px) and (min-width: 768px)
   .offers
-    width: 90%
+    width: 92%
   .half-transparent
-    width: 90%!important
+    width: 92%!important
     margin-top: -3.25rem!important
     h3
       font-size: 1rem!important
@@ -219,11 +233,11 @@ export default {
   .mt
     margin-top: 2rem!important
   .pl-sm
-      padding-left: 1rem!important
+    padding-left: 1rem!important
   img
     width: 100%
   .half-transparent
-    width: 97.3%!important
+    width: 97%!important
   .ml-n5
     margin-left: 0.75rem!important
 
@@ -250,4 +264,6 @@ export default {
     .block
         display: block!important
         width: 100%!important
+    h5
+      font-size: 1rem
 </style>
