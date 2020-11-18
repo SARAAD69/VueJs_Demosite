@@ -1,5 +1,7 @@
 # demo-site
 
+Features MeteoAPI https://api.meteo.lt/ usage - **Offers today** banner image is changing based on weather forecast
+
 ## Project setup
 ```
 npm install
